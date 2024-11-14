@@ -115,25 +115,26 @@ Archivo zonas/db.asircastelao.int: Este archivo define los registros DNS de la z
 
 ## Paso 3: Iniciar los Contenedores con docker-compose
 
-    Levantar los contenedores: Una vez que hayas configurado el archivo docker-compose.yml y los archivos de configuración, puedes iniciar los contenedores con el siguiente comando:
+Levantar los contenedores: Una vez que hayas configurado el archivo docker-compose.yml y los archivos de configuración, puedes iniciar los contenedores con el siguiente comando:
 
     docker-compose up -d
 
-    Esto descargará las imágenes necesarias (si no están disponibles) y levantará ambos contenedores: el servidor DNS y el cliente.
+Esto descargará las imágenes necesarias (si no están disponibles) y levantará ambos contenedores: el servidor DNS y el cliente.
+---
 
-Paso 4: Configurar el Cliente para Usar el Servidor DNS
+## Paso 4: Configurar el Cliente para Usar el Servidor DNS
 
-    Acceder al contenedor del cliente: Una vez que los contenedores estén en funcionamiento, accede al contenedor del cliente (Alpine) usando:
+Acceder al contenedor del cliente: Una vez que los contenedores estén en funcionamiento, accede al contenedor del cliente (Alpine) usando:
 
-docker exec -it Prac6_alpine /bin/sh
+    docker exec -it Prac6_alpine /bin/sh
 
 Instalar dig: Dentro del contenedor cliente, instala las herramientas necesarias para realizar consultas DNS con el siguiente comando:
 
-apk update && apk add bind-tools
+    apk update && apk add bind-tools
 
 Realizar consultas DNS con dig: Ahora puedes usar el comando dig para realizar consultas al servidor DNS. Ejemplo de consulta:
 
-dig @172.28.5.1 test.asircastelao.int
+    dig @172.28.5.1 test.asircastelao.int
 
 Esto debería devolver la IP 172.28.5.4, que es la que configuraste en el archivo de zona.
 
@@ -141,18 +142,20 @@ También puedes probar con otros registros, como:
 
     dig @172.28.5.1 ns.asircastelao.int
 
-    Resultado esperado: La consulta debería devolver la IP del servidor DNS 172.28.5.1.
+Resultado esperado: La consulta debería devolver la IP del servidor DNS 172.28.5.1.
+---
 
-Paso 5: Verificar y Depurar
+## Paso 5: Verificar y Depurar
 
-    Si todo está correctamente configurado, el cliente debería poder resolver los dominios definidos en el servidor DNS. Si dig muestra un error como SERVFAIL, verifica los archivos de configuración de Bind9 y asegúrate de que los volúmenes estén montados correctamente.
+Si todo está correctamente configurado, el cliente debería poder resolver los dominios definidos en el servidor DNS. Si dig muestra un error como SERVFAIL, verifica los archivos de configuración de Bind9 y asegúrate de que los volúmenes estén montados correctamente.
 
-    También puedes revisar los logs del servidor DNS con:
+También puedes revisar los logs del servidor DNS con:
 
     docker logs Practica6_bind9
 
-    Esto te mostrará cualquier error o advertencia relacionado con el servidor DNS.
+ Esto te mostrará cualquier error o advertencia relacionado con el servidor DNS.
+---
 
-Conclusión
+## Conclusión
 
 Siguiendo estos pasos, has configurado con éxito un sistema cliente-servidor DNS usando Docker y docker-compose. El servidor DNS está ejecutándose en un contenedor con Bind9 y el cliente está configurado para hacer consultas a este servidor, validando la resolución de nombres a través de dig.
