@@ -7,7 +7,7 @@
 
 Este archivo configura tanto el servidor DNS como el cliente, ambos en contenedores de Docker.
 
-    Crea un directorio para el proyecto: En tu máquina local, crea un directorio donde guardarás todos los archivos de configuración:
+Crea un directorio para el proyecto: En tu máquina local, crea un directorio donde guardarás todos los archivos de configuración:
 ```
 mkdir dns_project
 cd dns_project
