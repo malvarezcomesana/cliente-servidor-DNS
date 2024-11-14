@@ -73,26 +73,26 @@ Crea los directorios de configuración: Dentro de dns_project, crea los director
 
 ## Paso 2: Crear Archivos de Configuración para Bind9
 
-    Archivo conf/named.conf: Este archivo contiene la configuración básica de Bind9. Crea el archivo conf/named.conf con el siguiente contenido:
+Archivo conf/named.conf: Este archivo contiene la configuración básica de Bind9. Crea el archivo conf/named.conf con el siguiente contenido:
 
-options {
-  directory "/var/cache/bind";
-  forwarders {
-    8.8.8.8;
-  };
-  allow-query { any; };
-};
+    options {
+      directory "/var/cache/bind";
+      forwarders {
+      8.8.8.8;
+      };
+      allow-query { any; };
+    };
 
-zone "asircastelao.int" {
-  type master;
-  file "/var/lib/bind/db.asircastelao.int";
-};
+    zone "asircastelao.int" {
+      type master;
+      file "/var/lib/bind/db.asircastelao.int";
+    };
 
-Explicación:
+- Explicación:
 
-    Define las opciones básicas para Bind9.
-    Establece un "forwarder" (servidor DNS al que redirigir las consultas no resueltas) a Google DNS (8.8.8.8).
-    Crea una zona llamada asircastelao.int que usará el archivo db.asircastelao.int para los registros.
+Define las opciones básicas para Bind9.
+Establece un "forwarder" (servidor DNS al que redirigir las consultas no resueltas) a Google DNS (8.8.8.8).
+Crea una zona llamada asircastelao.int que usará el archivo db.asircastelao.int para los registros.
 
 Archivo zonas/db.asircastelao.int: Este archivo define los registros DNS de la zona asircastelao.int. Crea el archivo zonas/db.asircastelao.int con el siguiente contenido:
 
@@ -108,9 +108,9 @@ Archivo zonas/db.asircastelao.int: Este archivo define los registros DNS de la z
     ns      IN      A       172.28.5.1
     test    IN      A       172.28.5.4
 
-    Explicación:
-        Define un registro SOA (Start of Authority) para la zona.
-        Registros NS y A que indican que ns.asircastelao.int apunta a 172.28.5.1 y test.asircastelao.int apunta a 172.28.5.4.
+- Explicación:
+  Define un registro SOA (Start of Authority) para la zona.
+  Registros NS y A que indican que ns.asircastelao.int apunta a 172.28.5.1 y test.asircastelao.int apunta a 172.28.5.4.
 ---
 
 ## Paso 3: Iniciar los Contenedores con docker-compose
@@ -120,6 +120,7 @@ Levantar los contenedores: Una vez que hayas configurado el archivo docker-compo
     docker-compose up -d
 
 Esto descargará las imágenes necesarias (si no están disponibles) y levantará ambos contenedores: el servidor DNS y el cliente.
+
 ---
 
 ## Paso 4: Configurar el Cliente para Usar el Servidor DNS
