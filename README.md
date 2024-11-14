@@ -13,9 +13,9 @@ mkdir dns_project
 cd dns_project
 ```
 Crea el archivo docker-compose.yml: En el directorio del proyecto, crea un archivo llamado docker-compose.yml con el siguiente contenido:
-
+```
 version: '3'
-
+```
 services:
 
     asir_bind9:
