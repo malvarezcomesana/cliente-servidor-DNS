@@ -144,6 +144,7 @@ También puedes probar con otros registros, como:
     dig @172.28.5.1 ns.asircastelao.int
 
 Resultado esperado: La consulta debería devolver la IP del servidor DNS 172.28.5.1.
+
 ---
 
 ## Paso 5: Verificar y Depurar
@@ -154,7 +155,8 @@ También puedes revisar los logs del servidor DNS con:
 
     docker logs Practica6_bind9
 
- Esto te mostrará cualquier error o advertencia relacionado con el servidor DNS.
+Esto te mostrará cualquier error o advertencia relacionado con el servidor DNS.
+ 
 ---
 
 ## Conclusión
