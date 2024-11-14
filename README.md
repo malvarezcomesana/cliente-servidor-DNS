@@ -1,6 +1,6 @@
 # Cliente-servidor-DNS
 Pasos para Configuración Cliente-Servidor DNS
-###Paso 1: Crear el archivo docker-compose.yml
+Paso 1: Crear el archivo docker-compose.yml
 ---
 
 Este archivo configura tanto el servidor DNS como el cliente, ambos en contenedores de Docker.
