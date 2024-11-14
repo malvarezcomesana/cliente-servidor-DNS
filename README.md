@@ -2,7 +2,7 @@
 
 ## Pasos para Configuración Cliente-Servidor DNS
 
-Paso 1: Crear el archivo docker-compose.yml
+## Paso 1: Crear el archivo docker-compose.yml
 ---
 
 Este archivo configura tanto el servidor DNS como el cliente, ambos en contenedores de Docker.
@@ -17,8 +17,10 @@ Crea el archivo docker-compose.yml: En el directorio del proyecto, crea un archi
 version: '3'
 ```
 services:
+
   asir_bind9:
-    container_name: Practica6_bind9
+  
+      container_name: Practica6_bind9
     image: ubuntu/bind9
     platform: linux/amd64
     ports:
@@ -32,6 +34,7 @@ services:
     restart: unless-stopped  # Reiniciar el contenedor si falla o si Docker se reinicia
 
   cliente:
+  
     container_name: Prac6_alpine
     image: alpine
     platform: linux/amd64
@@ -46,6 +49,7 @@ services:
 
 networks:
   bind9_subnet:
+  
     driver: bridge  # Tipo de red 'bridge'
     ipam:
       config:
@@ -66,8 +70,9 @@ networks:
 Crea los directorios de configuración: Dentro de dns_project, crea los directorios conf y zonas donde se almacenarán los archivos de configuración de Bind9:
 
     mkdir conf zonas
+---
 
-Paso 2: Crear Archivos de Configuración para Bind9
+## Paso 2: Crear Archivos de Configuración para Bind9
 
     Archivo conf/named.conf: Este archivo contiene la configuración básica de Bind9. Crea el archivo conf/named.conf con el siguiente contenido:
 
@@ -107,8 +112,9 @@ Archivo zonas/db.asircastelao.int: Este archivo define los registros DNS de la z
     Explicación:
         Define un registro SOA (Start of Authority) para la zona.
         Registros NS y A que indican que ns.asircastelao.int apunta a 172.28.5.1 y test.asircastelao.int apunta a 172.28.5.4.
+---
 
-Paso 3: Iniciar los Contenedores con docker-compose
+## Paso 3: Iniciar los Contenedores con docker-compose
 
     Levantar los contenedores: Una vez que hayas configurado el archivo docker-compose.yml y los archivos de configuración, puedes iniciar los contenedores con el siguiente comando:
 
