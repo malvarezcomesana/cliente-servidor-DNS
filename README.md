@@ -13,14 +13,13 @@ mkdir dns_project
 cd dns_project
 ```
 Crea el archivo docker-compose.yml: En el directorio del proyecto, crea un archivo llamado docker-compose.yml con el siguiente contenido:
-```
+
 version: '3'
-```
+
 services:
 
-  asir_bind9:
-  
-      container_name: Practica6_bind9
+    asir_bind9:
+    container_name: Practica6_bind9
     image: ubuntu/bind9
     platform: linux/amd64
     ports:
@@ -48,8 +47,8 @@ services:
     restart: unless-stopped  # Asegurarse de que el cliente también se reinicie si falla
 
 networks:
-  bind9_subnet:
-  
+
+    bind9_subnet:
     driver: bridge  # Tipo de red 'bridge'
     ipam:
       config:
